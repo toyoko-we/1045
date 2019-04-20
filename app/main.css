@@ -25,7 +25,13 @@ main{
           flex-direction:column;
 }
 
+/*
+ * Font Awesome を被せて定義する
+ * i.icon.name is user icon@fa
+ * i.icon.floor is list icon@fa
+ */
 i.icon.name:before  {content:'\f007';}
+i.icon.floor:before  {content:'\f03a';}
 
 #view{
   height:100%;
@@ -42,5 +48,3 @@ i.icon.name:before  {content:'\f007';}
 .dg.main .close-button{
   display:none;
 }
-
-

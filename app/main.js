@@ -16,10 +16,11 @@ document.addEventListener('DOMContentLoaded',function(){
       uid:0,
       userList:null,
       src:[],
-      srcFilters:['name','bed','bath','check'],
+      srcFilters:['name','floor','bed','bath','check'],
       user:null,
       userData:{
         name:'・ω・',
+        floor:0,
         bed:null,
         bath:null,
         check:null
@@ -88,7 +89,12 @@ document.addEventListener('DOMContentLoaded',function(){
 
       var self = this
       var gui = new dat.GUI({autoPlace:false})
-          gui.add(this.userData,'name').onChange(function(value){
+          gui.add(this.userData,'name').name('名前は？').onChange(function(value){
+            self.sync()
+          })
+          // ホテルが何階から何階まであって１フロアずつ増減・自分がどのフロアにいるってこと
+          gui.add(this.userData,'floor').min(0).max(12).step(1).name('今何階？').onChange(function(value){
+            value = parseInt(value)
             self.sync()
           })
 
