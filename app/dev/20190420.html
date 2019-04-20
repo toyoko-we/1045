@@ -20,13 +20,46 @@
    <link href='asset/progressive-web-app.json' rel='manifest'>
    <link href='asset/favicon.ico' rel='icon'>
 
-
    <script src=''></script>
    <script>
   </script>
    <style>
+
+     html,
+     body{
+       height:100%;
+     }
+
+     .ui.grid,
+     .ui.grid .row,
+     .ui.grid .row .column{
+       height:100%;
+     }
+
+     .ui.grid .row .column{
+       display:block; /* Safari Width 0 問題 */
+     }
+
+     main{
+       height:100%;
+       background:#0cf;
+     }
+
   </style>
  </head>
   <body>
+
+   <div class='ui menu pointing icon fixed sticky top'>
+     <a class='item active'><i class='icon user'></i></a>
+  </div>
+
+   <div class='ui grid padded'>
+     <div class='row'>
+       <div class='column'>
+         <main>
+        </main>
+      </div>
+    </div>
+  </div>
  </body>
 </html>
