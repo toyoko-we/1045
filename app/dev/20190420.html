@@ -20,13 +20,32 @@
    <link href='asset/progressive-web-app.json' rel='manifest'>
    <link href='asset/favicon.ico' rel='icon'>
 
-   <script src=''></script>
+   <script src='module/core/vue/2.6.10.min.js'></script>
    <script>
+
+     document.addEventListener('DOMContentLoaded',function(){
+
+      new Vue({
+        el:'main',
+        data:{
+          name:'',
+        },
+        created:function(){
+          this.name = 'Hello World'
+        },
+        mounted:function(){
+          console.dir(this.$el)
+        }
+      })
+
+     })
+
   </script>
    <style>
 
      html,
-     body{
+     body,
+     main{
        height:100%;
      }
 
@@ -40,7 +59,7 @@
        display:block; /* Safari Width 0 問題 */
      }
 
-     main{
+     .content{
        height:100%;
        background:#0cf;
      }
@@ -49,17 +68,23 @@
  </head>
   <body>
 
-   <div class='ui menu pointing icon fixed sticky top'>
-     <a class='item active'><i class='icon user'></i></a>
-  </div>
+   <main>
 
-   <div class='ui grid padded'>
-     <div class='row'>
-       <div class='column'>
-         <main>
-        </main>
+     <div class='ui menu pointing icon fixed sticky top'>
+       <a class='item active'><i class='icon user'></i></a>
+    </div>
+
+     <div class='ui grid padded'>
+       <div class='row'>
+         <div class='column'>
+           <div class='content'>
+             {{name}}
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+
+  </main>
+
  </body>
 </html>
