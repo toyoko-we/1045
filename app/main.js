@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded',function(){
        */
       this.user.put(this.userData)
 
+      // これは昔のJS用、本当なら =>で書きたい
       var self = this
       /*
        * 本当はonce()を使ってレコード毎にデータを取りたいところだが
@@ -84,6 +85,14 @@ document.addEventListener('DOMContentLoaded',function(){
 
     },
     mounted:function(){
+
+      var self = this
+      var gui = new dat.GUI({autoPlace:false})
+          gui.add(this.userData,'name').onChange(function(value){
+            self.sync()
+          })
+
+      $('#data-controller').append(gui.domElement)
 
       $('.menu .browse')
       .popup({

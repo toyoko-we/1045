@@ -24,8 +24,23 @@ main{
       -ms-flex-direction:column;
           flex-direction:column;
 }
+
+i.icon.name:before  {content:'\f007';}
+
 #view{
   height:100%;
   overflow-y:auto;
 }
+#data-controller{
+  padding:0;
+  border:none;
+}
+.dg.main,
+.dg.main .close-button{
+  width:100% !important;
+}
+.dg.main .close-button{
+  display:none;
+}
+
 
