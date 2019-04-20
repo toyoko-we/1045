@@ -1,0 +1,146 @@
+ <html>
+  <head>
+   <meta charset='utf-8'>
+   <link href='/module/ui/semantic/all-prefix.2.4.2.min.css' rel='stylesheet'>
+   <meta content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
+   <style>
+/*
+ * 構造を決めて
+ */
+     html,
+     body{
+       height:100%;
+     }
+     .ui.grid,
+     .ui.grid .row,
+     .ui.grid .row .column{
+       height:100%;
+     }
+     .ui.grid .row .column{
+       display:-webkit-flex;
+       display:flex;
+       -webkit-flex-direction:column;
+       flex-direction:column;
+     }
+/*
+ * 枠組を調整して
+ */
+     /* view */
+     .ui.table thead th,
+     .ui.table tbody td{
+       padding:0;
+     }
+     .ui.table thead th{
+       top:0;
+       position:sticky;
+       position: -webkit-sticky;
+       background:white !important;
+     }
+     .ui.table thead th .icon{
+       margin:0;
+     }
+     /* controller */
+     .ui.menu .item > input[type=number].floating.label{
+        text-align:center;
+        padding:.3em 0;
+        width:2em;
+      }
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button{
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        appearance:none;
+        margin:0;
+      }
+      input[type=number]:focus{
+        outline:none;
+      }
+/*
+ * 配色を考えて
+ */
+      .user    {color:#00b5ad;}
+      .bath    {color:#2185d0;}
+      .bed     {color:#fbbd08;}
+      .check   {color:#21ba45;}
+      .ui.menu input.label.bed   {background:#fbbd08;}
+      .ui.menu input.label.bath  {background:#2185d0;}
+      .ui.menu input.label.check {background:#21ba45;}
+/*
+ * スクロール可能にする
+ */
+      #table{
+        height:100%;
+        overflow-y:scroll;
+      }
+  </style>
+ </head>
+  <body>
+   <div class='ui grid padded'>
+     <div class='row'>
+       <div class='column'>
+         <div id='table' class='component'>
+           <table class='ui table unstackable center aligned celled very basic'>
+             <thead>
+               <tr>
+                 <th><i class='icon user'></i></th>
+                 <th><i class='icon list'></i></th>
+                 <th><i class='icon bed'></i></th>
+                 <th><i class='icon bath'></i></th>
+                 <th><i class='icon check'></i></th>
+              </tr>
+            </thead>
+             <tbody>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+               <tr><td>・ω・</td><td>12</td><td>99</td><td>99</td><td>99</td></tr>
+            </tbody>
+          </table>
+        </div>
+     
+           <div class='ui menu five item icon'>
+             <a class='item'>
+               <i class='icon user'></i>
+            </a>
+             <div class='item'>
+            </div>
+             <a class='item'>
+               <i class='icon bed'></i>
+               <input type='number' value='99' min='0' max='99' class='ui label floating bed'></a>
+             <a class='item'>
+               <i class='icon bath'></i>
+               <input type='number' value='99' min='0' max='99'  class='ui label floating bath'></a>
+             <a class='item'>
+               <i class='icon check'></i>
+               <input type='number' value='99' min='0' max='99' class='ui label floating check'></a>
+          </div>
+        </div>
+     
+    </div>
+  </div>
+ </body>
+</html>
