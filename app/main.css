@@ -143,3 +143,25 @@ i.icon.no:before  {content:'\f03a';}
 i.icon.tags:before  {content:'\f02c';}
 
 tr.selected{background-color:rgba(0,0,0,.05);}
+
+.roomList th:nth-of-type(2) i.c15{
+  display:none;
+}
+.roomList th:nth-of-type(3) i.c16{
+  display:none;
+}
+.roomList th:nth-of-type(4) i.make{
+  display:none;
+}
+.roomList th:nth-of-type(2):after{
+  content:'15';
+}
+.roomList th:nth-of-type(3):after{
+  content:'16';
+}
+.roomList th:nth-of-type(4):after{
+  content:'メイク';
+}
+.pretty{
+  margin-right:0;
+}

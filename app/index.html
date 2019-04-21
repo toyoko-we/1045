@@ -55,8 +55,8 @@
 
    <!-- 起動 -->
    <script src='main.js' defer></script>
-   <script data-src='https://embed.small.chat/THLFELBTNGHM19V7AR.js' async></script>
-   <!-- クッキー利用におけるプライバシーポリシーは後のコミットで付加 -->
+<!--    <script data-src='https://embed.small.chat/THLFELBTNGHM19V7AR.js' async></script>
+
    <script src='https://www.googletagmanager.com/gtag/js?id=UA-137563800-1' async></script>
    <script>
      window.dataLayer = window.dataLayer || []
@@ -65,9 +65,10 @@
      }
      gtag('js',new Date())
      gtag('config','UA-137563800-1')
-  </script>
+  </script> -->
    <style>
      @import url('module/ui/dat-gui/theme/liabru/light.min.css');
+     @import url('module/ui/pretty-checkbox/3.0.3.min.css');
      @import url('module/ui/box-shadow/1.0.5.min.css');
      @import url('module/ui/animate/3.7.0.min.css');
      @import url('main.css');
@@ -98,10 +99,10 @@
              <div class='ui fluid popup' id='user-controller'>
 
               
-               <div class='roomList' contenteditable='true'>
+               <div class='roomList'>
                   <data-table
                   :rows='roomList'
-                  :keys="['no','description']"
+                  :keys="['no','c15','c16','make']"
                    @selection-changed='roomSelect'>
                </data-table>
               </div>

@@ -20,8 +20,18 @@
         @click='selectBy(row)'>
           <td
             v-for='col in keys'
+            v-if="typeof row[col] !== 'boolean'"
             v-text='row[col]'
             :class="[cellClass(col,row[col])]">
+          <td
+            v-else>
+    <div class="pretty p-default">
+        <input type="checkbox" v-model='row[col]'/>
+        <div class="state p-primary">
+            <label></label>
+        </div>
+    </div>
+            </td>
       </tr>
     </tbody>
   </table>
@@ -97,6 +107,7 @@
 }
 .data-table.ui thead th{
   top:0;
+  z-index:999;
   position:sticky;
   position: -webkit-sticky;
   background:white !important;

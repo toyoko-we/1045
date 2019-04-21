@@ -107,16 +107,21 @@ document.addEventListener('DOMContentLoaded',function(){
         this.userData = JSON.parse(localStorage.getItem('userData'))
       }
 
+      
+
+
       this.init()
     
       this.roomList = _.map(new Array(112),function(value,i){
         return {
           no:i + 1,
-          tags:null
+          c15:false,
+          c16:false,
+          make:false,
         }
       })
 
-
+     
 
 
       
@@ -133,7 +138,12 @@ document.addEventListener('DOMContentLoaded',function(){
        * 少量だし、ホテルのWIFIを利用すればデータ通信量も気にはならない
        * ただ、更新時のデータの整合性が気になる、改良の必要がありそうだ
        */
+      var self = this
       this.userList.open(function(data){
+        
+        // _.each(_.keys(data),function(v){
+        //   self.userList.get(v).put(null)
+        // })
         // NULLを省きたいだけだよ
         self.src = _.filter(data)
       })
