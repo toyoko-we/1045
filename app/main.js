@@ -77,10 +77,14 @@ document.addEventListener('DOMContentLoaded',function(){
       sync:function(){
          this.user.put(this.userData)
          this.userList.set(this.user)
+
+         localStorage.setItem('userData',JSON.stringify(this.userData))
       }
     },
     created:function(){
       this.init()
+
+      this.userData = JSON.parse(localStorage.getItem('userData'))
 
       /*
        * ユーザにデータを登録
@@ -106,8 +110,7 @@ document.addEventListener('DOMContentLoaded',function(){
       // 今のところGUNにキーを消す機能はない
       // また、bye()は古いデータにアクセスしているから
       // プルリクエストを送っておくべきか（メールはして返信あったんだけど）
-      this.userList.get(this.uid).bye().put(null);
-
+      this.userList.get(this.uid).bye().put(null)
     },
     mounted:function(){
 
@@ -121,8 +124,6 @@ document.addEventListener('DOMContentLoaded',function(){
             value = parseInt(value)
             self.sync()
           })
-
-     
 
       $('#user-controller').append(gui.domElement)
 
@@ -144,10 +145,6 @@ document.addEventListener('DOMContentLoaded',function(){
           })
         ;
      
-
-      
-
-
     }
   })
 
