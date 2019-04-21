@@ -83,8 +83,11 @@ document.addEventListener('DOMContentLoaded',function(){
     },
     created:function(){
       this.init()
-
-      this.userData = JSON.parse(localStorage.getItem('userData'))
+    
+      if ('userData' in localStorage) {
+        this.userData = JSON.parse(localStorage.getItem('userData'))
+      }
+      
 
       /*
        * ユーザにデータを登録
