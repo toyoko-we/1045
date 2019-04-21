@@ -162,3 +162,10 @@ tr.selected{background-color:rgba(0,0,0,.05);}
 .pretty{
   margin-right:0;
 }
+
+iframe{
+  border:none;
+  width:100%;
+  height:100%;
+}
+
