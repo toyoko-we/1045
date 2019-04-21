@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded',function(){
       srcFilters:['name','floor','bed','bath','check'],
       user:null,
       userData:{
+        id:null,
         name:'・ω・',
         floor:0,
         bed:null,
@@ -51,6 +52,16 @@ document.addEventListener('DOMContentLoaded',function(){
       }
     },
     methods:{
+      row:function(row){
+        return {
+          me:row.id == this.uid
+        }
+      },
+      cell:function(key,val){
+        return {
+          zero:val == 0
+        }
+      },
       init:function(){
         /*
          * bye()がうまくいかなかった時に
@@ -65,6 +76,8 @@ document.addEventListener('DOMContentLoaded',function(){
          * これはいづれフィンガープリントの値にする
          */
         this.uid = moment().format('x')
+
+        this.userData.id = this.uid
         /*
          * ユーザを取得
          */
@@ -82,11 +95,15 @@ document.addEventListener('DOMContentLoaded',function(){
       }
     },
     created:function(){
-      this.init()
-    
+
+      // IDを上書きしないために先に持ってきた
       if ('userData' in localStorage) {
         this.userData = JSON.parse(localStorage.getItem('userData'))
       }
+
+      this.init()
+    
+
       
 
       /*
@@ -123,7 +140,7 @@ document.addEventListener('DOMContentLoaded',function(){
             self.sync()
           })
           // ホテルが何階から何階まであって１フロアずつ増減・自分がどのフロアにいるってこと
-          gui.add(this.userData,'floor').min(0).max(12).step(1).name('今何階？').onChange(function(value){
+          gui.add(this.userData,'floor').min(0).max(13).step(1).name('今何階？').onChange(function(value){
             value = parseInt(value)
             self.sync()
           })

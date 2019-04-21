@@ -114,3 +114,6 @@ i.icon.floor:before  {content:'\f03a';}
   font-family:'Azuki';
   font-weight:bold;
 }
+
+tr.me{background-color:rgba(0,0,0,.05);}
+td.zero{color:transparent;}
