@@ -1,3 +1,6 @@
+/*
+ * 構造を決めて
+ */
 html,
 body,
 main{
@@ -26,21 +29,40 @@ main{
 }
 
 /*
- * Font Awesome を被せて定義する
- * i.icon.name is user icon@fa
- * i.icon.floor is list icon@fa
+ * アイコンを新しくして
  */
 i.icon.name:before  {content:'\f007';}
 i.icon.floor:before  {content:'\f03a';}
 
+/*
+ * 配色を考えて
+ */
+.name    {color:#00b5ad;}
+.floor   {color:#000000;}
+.bed     {color:#fbbd08;}
+.bath    {color:#2185d0;}
+.check   {color:#21ba45;}
+
+.item .numeric-up-down input.label.bed   {background:#fbbd08;}
+.item .numeric-up-down input.label.bath  {background:#2185d0;}
+.item .numeric-up-down input.label.check {background:#21ba45;}
+
+/*
+ * display:flex必須
+ * スクロール可能にする
+ */
 #view{
   height:100%;
   overflow-y:auto;
 }
-#data-controller{
-  padding:0;
+#user-controller{
   border:none;
+  padding:0;
 }
+
+/*
+ * dat.gui最大化
+ */
 .dg.main,
 .dg.main .close-button{
   width:100% !important;

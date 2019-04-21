@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded',function(){
             self.sync()
           })
 
-      $('#data-controller').append(gui.domElement)
+      $('#user-controller').append(gui.domElement)
 
       $('.menu .browse')
       .popup({
