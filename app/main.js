@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded',function(){
          * 日毎に変えればそういった心配をする必要もなくなる
          */
         this.db = moment().format('YMD')
+        this.db = 'tester'
         /*
          * 仮だよ
          * GunにはRANDOM.TEXTがあるけれど
@@ -133,6 +134,8 @@ document.addEventListener('DOMContentLoaded',function(){
       this.userList.get(this.uid).bye().put(null)
     },
     mounted:function(){
+
+      FastClick.attach(this.$el);
 
       var self = this
       var gui = new dat.GUI({autoPlace:false})
