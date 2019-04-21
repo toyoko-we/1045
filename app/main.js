@@ -1,5 +1,28 @@
 'use strict'
 
+document.ui =
+{
+  
+  data:{
+    animate:function()
+    {
+      /*
+       * わざわざJS側に書くのはVUEのマウントを待っているってこと
+       * 直接HTMLに書くと、多分、描画される前にというよりJSの読込とか
+       * ああいった内部的な処理の間にレンダリングされない場合があるんじゃないかな
+       * だからこうしてる。マウントが終わってからならキチンとアニメーションされる...はず
+       * 別にwindow.load()でもいいんだけれど。ちょっとChrome Developer Toolをみるか
+       */
+      $('#view').addClass('animated zoomIn fast')
+      $('#counter').addClass('animated bounceIn fast')
+    }
+  },
+  ready:function(){
+    this.data.animate()
+  }
+  
+}
+
 document.addEventListener('DOMContentLoaded',function(){
 
   Vue.use(VueGun)
@@ -97,6 +120,8 @@ document.addEventListener('DOMContentLoaded',function(){
             value = parseInt(value)
             self.sync()
           })
+
+      document.ui.ready()
 
       $('#user-controller').append(gui.domElement)
 
