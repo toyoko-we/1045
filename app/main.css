@@ -93,3 +93,24 @@ i.icon.floor:before  {content:'\f03a';}
 #view{
   position: relative;
 }
+
+@font-face {
+  src:url('asset/font/larsenwork/gidolinya.otf');
+  font-family:'Gidolinya';
+}
+@font-face {
+  src:url('asset/font/azusa/azuki.ttf');
+  font-family:'Azuki';
+}
+
+.ui.table thead th:not(:first-child){
+  width:3rem;
+}
+.ui.table tbody td:not(:first-child){
+  font-family:'Gidolinya';
+  font-weight:bold;
+}
+.ui.table tbody td:first-child{
+  font-family:'Azuki';
+  font-weight:bold;
+}
