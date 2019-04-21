@@ -130,23 +130,20 @@ document.addEventListener('DOMContentLoaded',function(){
 
       $('#user-controller').append(gui.domElement)
 
-      document.ui.ready()
-
         $('.menu .browse')
           .popup({
-            inline     : true,
-            hoverable  : true,
+            inline     : false,
+            hoverable  : false,
             position   : 'top left',
             delay: {
               show: 300,
               hide: 800
             },
-            onCreate:function(e){
-              
-         
-            }
+             on: 'click'
           })
         ;
+
+        document.ui.ready()
      
     }
   })
