@@ -72,6 +72,13 @@ i.icon.floor:before  {content:'\f03a';}
 }
 
 /*
+ * MENUの入れ子の影響を受けてる
+ */
+.dg li.title{
+  text-align:left;
+}
+
+/*
  * 影
  * .bShadow-10
  * HTMLはSEMANTIC-UI一色だ
@@ -103,17 +110,36 @@ i.icon.floor:before  {content:'\f03a';}
   font-family:'Azuki';
 }
 
-.ui.table thead th:not(:first-child){
+#view .ui.table thead th:not(:first-child){
   width:3rem;
 }
-.ui.table tbody td:not(:first-child){
+#view .ui.table tbody td:not(:first-child){
   font-family:'Gidolinya';
   font-weight:bold;
 }
-.ui.table tbody td:first-child{
+#view .ui.table tbody td:first-child{
   font-family:'Azuki';
   font-weight:bold;
 }
 
+.roomList[contenteditable]{
+  outline:none;
+}
+#counter .ui.table thead th:first-child{
+  width:3rem;
+}
+
 tr.me{background-color:rgba(0,0,0,.05);}
 td.zero{color:transparent;}
+
+
+
+#counter .ui.popup .roomList{
+  height:50vh;
+  overflow-y:scroll;
+}
+
+i.icon.no:before  {content:'\f03a';}
+i.icon.tags:before  {content:'\f02c';}
+
+tr.selected{background-color:rgba(0,0,0,.05);}

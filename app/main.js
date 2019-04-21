@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded',function(){
       src:[],
       srcFilters:['name','floor','bed','bath','check'],
       user:null,
+      roomList:null,
       userData:{
         id:null,
         name:'・ω・',
@@ -61,6 +62,10 @@ document.addEventListener('DOMContentLoaded',function(){
         return {
           zero:val == 0
         }
+      },
+      roomSelect:function(row){
+        
+ 
       },
       init:function(){
         /*
@@ -104,6 +109,15 @@ document.addEventListener('DOMContentLoaded',function(){
 
       this.init()
     
+      this.roomList = _.map(new Array(112),function(value,i){
+        return {
+          no:i + 1,
+          tags:null
+        }
+      })
+
+
+
 
       
 
@@ -139,11 +153,14 @@ document.addEventListener('DOMContentLoaded',function(){
 
       var self = this
       var gui = new dat.GUI({autoPlace:false})
-          gui.add(this.userData,'name').name('名前は？').onChange(function(value){
+      var userFolder = gui.addFolder('利用者さまの名前と階の選択')
+      var listFolder = gui.addFolder('指示書用のコントローラ')
+
+          userFolder.add(this.userData,'name').name('名前は？').onChange(function(value){
             self.sync()
           })
           // ホテルが何階から何階まであって１フロアずつ増減・自分がどのフロアにいるってこと
-          gui.add(this.userData,'floor').min(0).max(13).step(1).name('今何階？').onChange(function(value){
+          userFolder.add(this.userData,'floor').min(0).max(13).step(1).name('今何階？').onChange(function(value){
             value = parseInt(value)
             self.sync()
           })
