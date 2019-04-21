@@ -14,7 +14,8 @@ document.ui =
        * 別にwindow.load()でもいいんだけれど。ちょっとChrome Developer Toolをみるか
        */
       $('#view').addClass('animated zoomIn fast')
-      $('#counter').addClass('animated bounceIn fast')
+      
+      // $('#counter').addClass('animated bounceIn fast')
     }
   },
   ready:function(){
@@ -121,21 +122,31 @@ document.addEventListener('DOMContentLoaded',function(){
             self.sync()
           })
 
-      // document.ui.ready()
+     
 
       $('#user-controller').append(gui.domElement)
 
-      $('.menu .browse')
-      .popup({
-        inline     : true,
-        hoverable  : true,
-        position   : 'top left',
-        delay: {
-          show: 300,
-          hide: 800
-        }
-      })
-    ;
+      document.ui.ready()
+
+        $('.menu .browse')
+          .popup({
+            inline     : true,
+            hoverable  : true,
+            position   : 'top left',
+            delay: {
+              show: 300,
+              hide: 800
+            },
+            onCreate:function(e){
+              
+         
+            }
+          })
+        ;
+     
+
+      
+
 
     }
   })
