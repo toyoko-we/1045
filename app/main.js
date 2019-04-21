@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded',function(){
             self.sync()
           })
 
-      document.ui.ready()
+      // document.ui.ready()
 
       $('#user-controller').append(gui.domElement)
 
