@@ -52,6 +52,14 @@ document.addEventListener('DOMContentLoaded',function(){
         check:null
       }
     },
+    watch:{
+      roomList:{
+        handler:function(val,oldVal){
+          localStorage.setItem('roomList',JSON.stringify(val))
+        },
+        deep:true
+      }
+    },
     methods:{
       row:function(row){
         return {
@@ -98,20 +106,11 @@ document.addEventListener('DOMContentLoaded',function(){
          this.userList.set(this.user)
 
          localStorage.setItem('userData',JSON.stringify(this.userData))
-      }
+      },
     },
     created:function(){
 
-      // IDを上書きしないために先に持ってきた
-      if ('userData' in localStorage) {
-        this.userData = JSON.parse(localStorage.getItem('userData'))
-      }
 
-      
-
-
-      this.init()
-    
       this.roomList = _.map(new Array(112),function(value,i){
         return {
           no:i + 1,
@@ -121,8 +120,18 @@ document.addEventListener('DOMContentLoaded',function(){
         }
       })
 
-     
+      // IDを上書きしないために先に持ってきた
+      if ('userData' in localStorage) {
+        this.userData = JSON.parse(localStorage.getItem('userData'))
+      }
+      if ('roomList' in localStorage) {
+        this.roomList = JSON.parse(localStorage.getItem('roomList'))
+      }
+      
 
+
+      this.init()
+    
 
       
 
@@ -161,6 +170,15 @@ document.addEventListener('DOMContentLoaded',function(){
 
       FastClick.attach(this.$el);
 
+
+      var roomListFunc = {
+        clear:function(){
+           // 仮
+        }
+      }
+
+
+
       var self = this
       var gui = new dat.GUI({autoPlace:false})
       var userFolder = gui.addFolder('利用者さまの名前と階の選択')
@@ -174,6 +192,8 @@ document.addEventListener('DOMContentLoaded',function(){
             value = parseInt(value)
             self.sync()
           })
+
+          listFolder.add(roomListFunc,'clear').name('指示書の初期化')
 
       $('#user-controller').append(gui.domElement)
 
