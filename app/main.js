@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded',function(){
       db:0,
       uid:0,
       userList:null,
+      viewFlip:true,
       src:[],
       srcFilters:['name','floor','bed','bath','check'],
       user:null,
@@ -201,7 +202,7 @@ document.addEventListener('DOMContentLoaded',function(){
           .popup({
             inline     : false,
             hoverable  : false,
-            position   : 'top left',
+            position   : 'top center',
             delay: {
               show: 300,
               hide: 800

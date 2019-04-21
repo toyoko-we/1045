@@ -51,7 +51,12 @@ i.icon.floor:before  {content:'\f03a';}
  * display:flex必須
  * スクロール可能にする
  */
-#view{
+ /*
+ * SEMANTIC-UIのATTACHED LABELはposition:absoluteだ
+ * だから外側をposition:relativeしないと幅をはみ出す
+ */
+.view-component{
+  position: relative;
   height:100%;
   overflow-y:auto;
 }
@@ -88,17 +93,9 @@ i.icon.floor:before  {content:'\f03a';}
  * Chrome Develoer Tool (Element)から割り当てて確認⇢スタイルをコピー⇢main.cssに記述
  * する。構造化の為のクラス名が散らばっている中でスタイルそのもののクラス名をつけようとは思わない
  */
-#view,
+.view-component,
 #counter{
   box-shadow: rgba(16, 36, 94, 0.4) 0 2px 6px 0;
-}
-
-/*
- * SEMANTIC-UIのATTACHED LABELはposition:absoluteだ
- * だから外側をposition:relativeしないと幅をはみ出す
- */
-#view{
-  position: relative;
 }
 
 @font-face {
