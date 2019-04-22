@@ -13,7 +13,7 @@ document.ui =
   }
 }
 
-document.addEventListener('DOMContentLoaded',function(){
+window.addEventListener('load',function(){
 
   Vue.use(VueGun)
   Vue.use(VueLoader)
@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded',function(){
       init:function(){
         this.db = moment().format('YMD')
         this.uid = this.$cookies.get('_ga')
+        console.dir(this.uid)
         this.user = this.$gun.get(this.uid)
         this.userList = this.$gun.get(this.db)
       },
