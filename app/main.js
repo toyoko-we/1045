@@ -85,6 +85,7 @@ window.addEventListener('load',function(){
 
       this.init()
       this.setup()
+      this.synchronize()
 
     },
     mounted:function(){
