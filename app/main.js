@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded',function(){
          * 日毎に変えればそういった心配をする必要もなくなる
          */
         this.db = moment().format('YMD')
-        this.db = 'tester'
         /*
          * 仮だよ
          * GunにはRANDOM.TEXTがあるけれど
@@ -101,6 +100,10 @@ document.addEventListener('DOMContentLoaded',function(){
          * ユーザリストを取得
          */
         this.userList = this.$gun.get(this.db)
+        this.userList.open(function(data){
+          console.dir(data)
+
+        })
       },
       sync:function(){
          this.user.put(this.userData)
@@ -132,7 +135,6 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
       this.init()
-    
 
       
 
@@ -150,7 +152,7 @@ document.addEventListener('DOMContentLoaded',function(){
        */
       var self = this
       this.userList.open(function(data){
-        
+ 
         // _.each(_.keys(data),function(v){
         //   self.userList.get(v).put(null)
         // })
