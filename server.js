@@ -32,16 +32,19 @@ const http    = require('hapi'),
             relativeTo:`${__dirname}/app/`
           }
         },
-        address:process.env.IP || '192.168.11.8',
-        host:process.env.HOST  || '192.168.11.8',
+        host:process.env.HOSTNAME  || '192.168.11.8',
         port:process.env.PORT  || 8080
       })
+
+// evennode
+console.dir(process.env)
 
 /*
  * GUN-DB
  * 分散型データベース。今回の要
  */
 var Gun = require('gun')
+require('gun/lib/open.js')
 require('gun/lib/bye.js')
 
 const gunDB = new Gun({
