@@ -29,7 +29,8 @@
    <script src='module/core/lodash/4.17.12.min.js'></script>
    <!-- 実装∫システムはＭＶＶＭ採用・ファイル単位にコンポーネント化 -->
    <script src='module/core/vue/2.6.10.min.js'></script>
-   <script src='module/core/vue/plugin/http-vue-loader/1.4.0.min.js'></script>
+   <script src='module/core/vue/plugin/loader/1.4.0.min.js'></script>
+   <script src='module/core/vue/plugin/cookies/1.5.13.min.js'></script>
    <!-- 通信∫データベースはグラフ型・保存はローカルストレージ・リアルタイム同期 -->
    <script src='module/core/gun/0.2019.416.min.js'></script>
    <script src='module/core/gun/lib/open.js'></script>
@@ -47,16 +48,13 @@
    <!-- 管理∫管理者画面やデータ操作用 -->
    <script src='module/ui/dat-gui/0.7.6.min.js'></script>
 
-   <!-- -->
+   <!-- 2015年より以前のスマホの300ms遅延問題 -->
    <script src='module/ui/fast-click/1.0.6.min.js'></script>
 
    <!-- VUE:GUNの登録 -->
    <script src='plugin/vue-gun.js'></script>
 
-   <!-- 起動 -->
-   <script src='main.js' defer></script>
-<!--    <script data-src='https://embed.small.chat/THLFELBTNGHM19V7AR.js' async></script>
-
+   <!-- <script data-src='https://embed.small.chat/THLFELBTNGHM19V7AR.js' async></script> -->
    <script src='https://www.googletagmanager.com/gtag/js?id=UA-137563800-1' async></script>
    <script>
      window.dataLayer = window.dataLayer || []
@@ -65,7 +63,9 @@
      }
      gtag('js',new Date())
      gtag('config','UA-137563800-1')
-  </script> -->
+  </script>
+   <!-- 起動 -->
+   <script src='main.js' defer></script>
    <style>
      @import url('module/ui/dat-gui/theme/liabru/light.min.css');
      @import url('module/ui/pretty-checkbox/3.0.3.min.css');
@@ -81,7 +81,7 @@
          <div class='column'>
 
            <!-- VIEW -->
-           <div v-if='viewFlip' id='view' class='view-component'>
+           <div id='view' class='view-component'>
              <div class="ui top attached label">1045 - TASK COUNTER</div>
              <data-table
                :rows='src'
@@ -90,36 +90,21 @@
                :cell-class='cell'>
             </data-table>
           </div>
-           <div v-else id='viewDocs' class='view-component'>
-            <div class="ui top attached label">1045 - DOCUMENT</div>
-            <iframe src='view/docs/index.html'></iframe>
-          </div>
-
 
            <!-- COUNTER -->
-           <div id='counter' :class="['ui','item','icon','menu','large','component',viewFlip ? 'five' : 'one']">
-             <div v-show='viewFlip' class='item browse'>
+           <div id='counter' :class="['ui','five','item','icon','menu','large','component']">
+             <div class='item browse'>
                <i class='icon name'></i>
             </div>
              <div class='ui fluid popup top left' id='user-controller'>
-
-              
-               <div class='roomList'>
-                  <data-table
-                  :rows='roomList'
-                  :keys="['no','c15','c16','make']"
-                   @selection-changed='roomSelect'>
-               </data-table>
-              </div>
-
                <!-- dat.gui -->
             </div>
-            　<div class='item' @click='viewFlip = !viewFlip'>
+            　<div class='item'>
                 <i class='icon list'></i>
             </div>
-             <numeric-up-down v-show='viewFlip' name='bed'   action='decrease' :min='0' :max='619' v-model='userData.bed'   @input='sync'></numeric-up-down>
-             <numeric-up-down v-show='viewFlip' name='bath'  action='decrease' :min='0' :max='619' v-model='userData.bath'  @input='sync'></numeric-up-down>
-             <numeric-up-down v-show='viewFlip' name='check' action='decrease' :min='0' :max='619' v-model='userData.check' @input='sync'></numeric-up-down>
+             <numeric-up-down name='bed'   action='decrease' :min='0' :max='619' v-model='userData.bed'   @input='synchronize'></numeric-up-down>
+             <numeric-up-down name='bath'  action='decrease' :min='0' :max='619' v-model='userData.bath'  @input='synchronize'></numeric-up-down>
+             <numeric-up-down name='check' action='decrease' :min='0' :max='619' v-model='userData.check' @input='synchronize'></numeric-up-down>
           </div>
         </div>
       </div>

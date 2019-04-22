@@ -7,13 +7,10 @@
      install:function(Vue,options){
        
        if (typeof window !== 'undefined' && window.Gun)
-         Vue.prototype.$gun = new Gun('http://toyoko.us-3.evennode.com' + '/gun')
+         Vue.prototype.$gun = new Gun(window.location.origin + '/gun')
        else
          throw 'Gun Not Found'
          
-
-      console.dir(Vue.prototype.$gun)
-
      }
    }
 
