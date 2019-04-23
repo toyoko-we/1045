@@ -169,3 +169,19 @@ iframe{
   height:100%;
 }
 
+#view{
+  height:70%;
+}
+#share{
+  height:30%;
+}
+#share textarea{
+  font-family:'Azuki';
+  font-weight:bold;
+  display:block;
+  outline:none;
+  border:none;
+  resize:none;
+  height:100%;
+  width:100%;
+}

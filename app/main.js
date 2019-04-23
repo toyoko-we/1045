@@ -2,7 +2,7 @@
 
 document.ui =
 {
-  el:'#view',
+  el:'.view-component',
   controller:{
     animate:function(el){
       $(el).addClass('animated zoomIn fast')
@@ -39,6 +39,7 @@ window.addEventListener('load',function(){
         bath:null,
         check:null
       },
+      shareText:'ddd'
     },
     methods:{
       row:function(userData){
@@ -54,7 +55,6 @@ window.addEventListener('load',function(){
       init:function(){
         this.db = moment().format('YMD')
         this.uid = this.$cookies.get('_ga')
-        console.dir(this.uid)
         this.user = this.$gun.get(this.uid)
         this.userList = this.$gun.get(this.db)
       },
@@ -69,12 +69,21 @@ window.addEventListener('load',function(){
   
         this.userList.set(this.user)
         this.userList.get(this.uid).bye().put(null)
+
+        this.$gun.get('shareText').get('content').on(function(data,key){
+          self.shareText = data
+        })
       },
       synchronize:function(){
         this.user.put(this.userData)
         this.userList.set(this.user)
 
         localStorage.setItem('userData',JSON.stringify(this.userData))
+      },
+      updateText:function(){
+        this.$gun.get('shareText').put({
+          content:this.shareText
+        })
       }
     },
     created:function(){
