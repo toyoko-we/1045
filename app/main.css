@@ -57,7 +57,6 @@ i.icon.floor:before  {content:'\f03a';}
  */
 .view-component{
   position: relative;
-  height:100%;
   overflow-y:auto;
 }
 #user-controller{
@@ -170,9 +169,10 @@ iframe{
 }
 
 #view{
-  height:70%;
+ height:max-content;
 }
 #share{
+  min-height:30%;
   height:30%;
 }
 #share textarea{
@@ -184,4 +184,14 @@ iframe{
   resize:none;
   height:100%;
   width:100%;
+}
+#total{
+  height:min-content;
+  height:-webkit-min-content;
+}
+
+.content{
+  padding:2px 1em;
+  height:100%;
+  overflow-y:scroll;
 }

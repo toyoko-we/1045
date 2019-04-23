@@ -22,8 +22,9 @@ window.addEventListener('load',function(){
   new Vue({
     el:'main',
     components:[
+      'url:component/gadget/total.vue',
       'url:component/form/data-table.vue',
-      'url:component/form/numeric-up-down.vue'
+      'url:component/form/numeric-up-down.vue',
     ],
     data:{
       src:[],

@@ -80,8 +80,14 @@
        <div class='row'>
          <div class='column'>
            
+          <div class='content'>
           <div id='share' class='view-component'>
-            <textarea v-model='shareText' @keyup='updateText' placeholder='共有事項'>slsllslsl</textarea>
+              <textarea v-model='shareText' @keyup='updateText' placeholder='共有事項'>slsllslsl</textarea>
+            </div>
+        
+          <div id='total' class='view-component'>
+            <div class="ui top attached label">TOTAL</div>
+            <total :rows='src' :keys="['bath','bed','check']"></total>
          </div>
 
            <!-- VIEW -->
@@ -94,6 +100,7 @@
                :cell-class='cell'>
             </data-table>
           </div>
+        </div>
 
            <!-- COUNTER -->
            <div id='counter' :class="['ui','five','item','icon','menu','large','component']">
