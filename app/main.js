@@ -64,6 +64,12 @@ window.addEventListener('load',function(){
           zero:userDataValue == 0
         }
       },
+      boot:function(){
+        var sound = new Howl({
+          src: ['/asset/media/sound/click.mp3']
+        });
+        sound.play()
+      },
       init:function(){
         this.db = moment().format('YMD')
         this.uid = this.$cookies.get('_ga')
@@ -104,6 +110,7 @@ window.addEventListener('load',function(){
         this.userData = JSON.parse(localStorage.getItem('userData'))
       }
 
+      this.boot()
       this.init()
       this.setup()
       this.synchronize()
