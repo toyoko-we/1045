@@ -2,14 +2,25 @@
 
 document.ui =
 {
-  el:'.view-component',
+  view:'.view-component',
+  button:'.menu .item .icon',
   controller:{
     animate:function(el){
       $(el).addClass('animated zoomIn fast')
     },
+    link:function(container){
+      $(container).find(document.ui.button).attr('data-sound','click')
+      $(container).find(document.ui.button).addClass('loud-link-click')
+      loudlinks({
+        location:{
+          mp3:'/asset/media/sound/'
+        }
+      })
+    }
   },
-  ready:function(){
-    this.controller.animate(this.el)
+  ready:function(container){
+    this.controller.animate(container)
+    this.controller.link(container)
   }
 }
 
@@ -100,7 +111,7 @@ window.addEventListener('load',function(){
     },
     mounted:function(){
 
-      document.ui.ready()
+      document.ui.ready(this.$el)
 
       FastClick.attach(this.$el)
 

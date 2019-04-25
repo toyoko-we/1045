@@ -1,5 +1,6 @@
 /*! loudlinks, v1.2 https://github.com/MahdiF/loud-links @preserve */
-var loudlinks = (function(document) {
+(function(root){
+  "use strict";
 
   // Avoid `console` errors in browsers lacking a console.
   var console = window.console || {};
@@ -11,7 +12,7 @@ var loudlinks = (function(document) {
     console.error('Oh man 😩! \nYour browser doesn\'t support audio awesomeness.');
     return function(){}; // return an empty function if `loudLinks` is called again.
   } else {
-    console.log('Audio works like a charm 👍');
+    // console.log('Audio works like a charm 👍');
   }
 
   // Create audio element and make it awesome
@@ -19,9 +20,7 @@ var loudlinks = (function(document) {
       mp3Source = document.createElement('source'),
       oggSource = document.createElement('source'),
       eventsSet = false,
-      typeReg = /{{type}}/gi, // regEx for replacing {{type}} in the URLs
-      mp3Location = 'sounds/mp3/', // mp3 sounds location
-      oggLocation = 'sounds/ogg/'; // ogg sounds location
+      typeReg = /{{type}}/gi; // regEx for replacing {{type}} in the URLs
 
   audioPlayer.setAttribute('preload',true); // audio element preload attribute
   mp3Source.setAttribute('type','audio/mpeg');
@@ -30,9 +29,6 @@ var loudlinks = (function(document) {
   // appending the sources to the player element
   audioPlayer.appendChild(mp3Source);
   audioPlayer.appendChild(oggSource);
-
-  // appending audioplayer to body
-  document.body.appendChild(audioPlayer);
 
   // Play audio
   function playAudio() {
@@ -51,8 +47,8 @@ var loudlinks = (function(document) {
       soundMp3Link = audioSrc.replace(typeReg,'mp3');
       soundOggLink = audioSrc.replace(typeReg,'ogg');
     } else { // Allow for the original relative URLs
-      soundMp3Link = mp3Location + audioSrc + '.mp3';
-      soundOggLink = oggLocation + audioSrc + '.ogg';
+      soundMp3Link = loudlinks.location.mp3 + audioSrc + '.mp3';
+      soundOggLink = loudlinks.location.ogg + audioSrc + '.ogg';
     }
 
     // Only set the `error` events once.
@@ -96,12 +92,18 @@ var loudlinks = (function(document) {
   }
 
   // Go crazy! Scan all the links and see if they have the 'data-sound' Attribute and attach the events
-  function loudlinks(){
+  function loudlinks(options){
+    if (typeof options === 'object')
+      loudlinks = Object.assign(loudlinks,options);
+    
+    // appending audioplayer to body
+    document.body.appendChild(audioPlayer);
+
     var hoverLinks = document.getElementsByClassName('loud-link-hover'),
-        clickLinks = document.getElementsByClassName('loud-link-click'),
-        hoverLength = hoverLinks.length,
-        clickLength = clickLinks.length,
-        i;
+    clickLinks = document.getElementsByClassName('loud-link-click'),
+    hoverLength = hoverLinks.length,
+    clickLength = clickLinks.length,
+    i;
 
     for (i = 0; i < hoverLength; i++) { trackHover(hoverLinks[i]); } // Hover
     for (i = 0; i < clickLength; i++) { trackClick(clickLinks[i]); } // Click
@@ -109,6 +111,21 @@ var loudlinks = (function(document) {
     return loudlinks;
   }
 
-  return loudlinks();
+  // default settings
+  loudlinks.location = {
+    mp3:'/asset/media/sound',
+    ogg:'/asset/media/sound',
+  }
 
-})(document);
+  // export modules
+  if( typeof module === "object" && typeof module.exports === "object" ){
+    module.exports = loudlinks;
+  /* global define */
+  }else if( typeof define === "function" && define.amd ){
+    define("loudlinks", loudlinks);
+  }else{
+    root.loudlinks = loudlinks;
+  }
+
+}(this));
+
