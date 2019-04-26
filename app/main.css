@@ -195,3 +195,13 @@ iframe{
   height:100%;
   overflow-y:scroll;
 }
+
+i.icon.hotel:before{content:'\f594';}
+i.icon.pen:before{content:'\f304';}
+i.icon.floor:before{content:'\f03a';}
+i.icon.book-open:before{content:'\f518';}
+i.icon.tools:before{content:'\f7d9';}
+
+.ui.main.menu i.icon{
+  color:#00b5ad;
+}

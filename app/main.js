@@ -68,7 +68,7 @@ window.addEventListener('load',function(){
         var sound = new Howl({
           src: ['/asset/media/sound/click.mp3']
         });
-        sound.play()
+        //sound.play()
       },
       init:function(){
         this.db = moment().format('YMD')
