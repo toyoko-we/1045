@@ -49,7 +49,7 @@
    <script src='module/pwa/2.0.8.min.js'></script>
 
    <!-- 導入|チャット窓口（問題が発生した時にその場で回答）-->
-   <script src='https://embed.small.chat/THLFELBTNGHM19V7AR.js' async></script>
+   <script data-src='https://embed.small.chat/THLFELBTNGHM19V7AR.js' async></script>
    <!-- 導入|アクセス解析（不審なアクセス検知と端末の識別）-->
    <script src='https://www.googletagmanager.com/gtag/js?id=UA-137563800-1' async></script>
    <script>
@@ -62,19 +62,60 @@
   </script>
    <script src='main.js'></script>
    <style>
+     @import url('module/ui/dat-gui/theme/liabru/light.min.css');
+     @import url('module/ui/pretty-checkbox/3.0.3.min.css');
+     @import url('module/ui/box-shadow/1.0.5.min.css');
+     @import url('module/ui/animate/3.7.0.min.css');
      @import url('main.css');
   </style>
  </head>
   <body>
    <main>
-     <article>
-      　<init @loaded='startup' v-show="parameter.has('debug')">
-          <div class='ui dimmer inverted active'>
-            <div class='ui loader'></div>
-         </div>
-       </init>
-       <introduce @logined='setup'></introduce>
-    </article>
+     <!-- boot -->
+     <div id='boot'
+          v-show='isReady == false'>
+       <article>
+         <init @loaded='startup' v-show="parameter.has('debug')">
+           <div class='ui dimmer inverted active'>
+             <div class='ui loader'></div>
+            </div>
+        </init>
+         <introduce @logined='setup'>  
+        </introduce>
+      </article>
+    </div>
+
+     <!-- application-->
+     <div id='application'
+          v-show='isReady == true'>
+
+       <div class='ui menu pointing icon fixed sticky top'>
+         <a class='item' data-tab='task'><i class='icon hotel'></i></a>
+         <a class='item' data-tab='list'><i class='icon list'></i></a>
+         <a class='item' data-tab='tool'><i class='icon tools'></i></a>
+         <a class='item' data-tab='edit'><i class='icon pen'></i></a>
+         <a class='item' data-tab='info'><i class='icon info'></i></a>
+      </div>
+
+       <div class='ui grid padded'>
+         <div class='row'>
+           <div class='column'>
+             
+            <div class='ui tab' data-tab='task'>A
+           </div>
+            <div class='ui tab' data-tab='list'>B
+           </div>
+            <div class='ui tab' data-tab='tool'>C
+           </div>
+            <div class='ui tab' data-tab='edit'>D
+           </div>
+            <div class='ui tab' data-tab='info'>E
+           </div>
+
+          </div>
+        </div>  
+      </div>
+    </div>
 
   </main>
  </body>

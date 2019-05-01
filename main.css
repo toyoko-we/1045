@@ -3,17 +3,44 @@ body,
 main{
   height:100%;
 }
-.ui.stackable.cards{
+
+#boot{
+  padding:.875em;
+}
+#boot .ui.cards~.ui.card {
+  margin-top: 0;
+}
+#boot .ui.stackable.cards{
   height:100%;
 }
 
-.ui.cards~.ui.cards {
-  margin-top: 0;
+
+.ui.grid,
+.ui.grid .row,
+.ui.grid .row .column{
+  height:100%;
 }
 
-main{
-  padding:.875em;
+.ui.grid .row .column{
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -webkit-flex-direction:column;
+     -moz-box-orient:vertical;
+     -moz-box-direction:normal;
+      -ms-flex-direction:column;
+          flex-direction:column;
 }
+
+
+
+
+
+
 
 @media only screen and (max-width: 767px){
   .ui.stackable.cards .card:first-child{
@@ -26,4 +53,15 @@ main{
     display: -ms-flexbox !important;
     display: flex !important;
   }
+}
+
+
+i.icon.hotel:before{content:'\f594';}
+i.icon.pen:before{content:'\f304';}
+i.icon.floor:before{content:'\f03a';}
+i.icon.book-open:before{content:'\f518';}
+i.icon.tools:before{content:'\f7d9';}
+
+.ui.main.menu i.icon{
+  color:#00b5ad;
 }
