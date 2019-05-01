@@ -15,11 +15,15 @@
    <!-- 設定Σアプリのビューポートと自動リンクを禁止 (Safari) -->
    <meta content='telephone=no, address=no, email=no, date=no, url=no' name='format-detection'>
    <meta content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
-   <!-- 対応Σアプリの画面はカバー率100%のベンダープレフィックス付 -->
-   <link href='module/ui/semantic/2.4.2.min.css' rel='stylesheet'>
+   <!-- 対応Σアプリの画面はカバー率100%のベンダープレフィックス付  -->
+   <link  href='module/ui/semantic/2.4.2.min.css' rel='stylesheet'>
    <!-- 詳細Σアプリの情報（名前・背景色・アイコン・表示モード）とファビコン -->
    <link href='asset/progressive-web-app.json' rel='manifest'>
    <link href='asset/favicon.ico' rel='icon'>
+
+   <!-- 対応Σアプリの画面はJQUERYを基本,VUE版の対応は未定 -->
+   <script src='module/ui/semantic/jquery/3.4.0.min.js'></script>
+   <script src='module/ui/semantic/2.4.2.min.js'></script>
 
    <!-- 運用∫ブラウザはレガシー対応（ES6~9) -->
    <script src='module/core/2.6.5.min.js'></script>
@@ -43,7 +47,7 @@
    <script src='module/pwa/xhr/0.1.10.min.js'></script>
    <script src='module/pwa/url/1.1.5.min.js'></script>
    <script src='module/pwa/2.0.8.min.js'></script>
-   
+
    <!-- 導入|チャット窓口（問題が発生した時にその場で回答）-->
    <script src='https://embed.small.chat/THLFELBTNGHM19V7AR.js' async></script>
    <!-- 導入|アクセス解析（不審なアクセス検知と端末の識別）-->
@@ -62,5 +66,16 @@
   </style>
  </head>
   <body>
+   <main>
+     <article>
+      　<init @loaded='startup' v-show="parameter.has('debug')">
+          <div class='ui dimmer inverted active'>
+            <div class='ui loader'></div>
+         </div>
+       </init>
+       <introduce @logined='setup'></introduce>
+    </article>
+
+  </main>
  </body>
 </html>
