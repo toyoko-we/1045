@@ -36,7 +36,11 @@ main{
           flex-direction:column;
 }
 
-
+.name    {color:#00b5ad;}
+.floor   {color:#000000;}
+.bed     {color:#fbbd08;}
+.bath    {color:#2185d0;}
+.check   {color:#21ba45;}
 
 
 
@@ -64,4 +68,34 @@ i.icon.tools:before{content:'\f7d9';}
 
 .ui.main.menu i.icon{
   color:#00b5ad;
+}
+
+/*
+ * アイコンを新しくして
+ */
+ i.icon.name:before  {content:'\f007';}
+ i.icon.floor:before  {content:'\f03a';}
+ 
+ /*
+  * 配色を考えて
+  */
+ .name    {color:#00b5ad;}
+ .floor   {color:#000000;}
+ .bed     {color:#fbbd08;}
+ .bath    {color:#2185d0;}
+ .check   {color:#21ba45;}
+
+ /*
+ * dat.gui最大化
+ */
+.dg.main,
+.dg.main .close-button{
+  width:100% !important;
+}
+.dg.main .close-button{
+  display:none !important;
+}
+#user-controller{
+  border:none;
+  padding:0;
 }

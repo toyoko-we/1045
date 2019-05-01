@@ -149,7 +149,7 @@
        agreed:function(event,fields){
          this.$emit('logined',
            this.nickname,
-           this.floor)
+           parseInt(this.floor))
        }
      },
      mounted:function(){

@@ -135,6 +135,11 @@
               'ui:fast-click':       {main:'1.0.6',license:'MIT',link:'https://github.com/ftlabs/fastclick'},
               'ui:dat-gui':          {main:'0.7.6',license:'APACHE',link:'https://github.com/dataarts/dat.gui'},
             }
+          },
+          date:{
+            lib:{
+              'date:moment':         {main:'2.24.0',license:'MIT',link:'https://github.com/moment/moment'},
+            }
           }
         },
         browser:{
@@ -282,7 +287,8 @@
     methods:{
       init:function(){
         this.script = Object.assign({},
-          this.view.ui.lib
+          this.view.ui.lib,
+          this.view.date.lib,
         )
       },
       construct:function(){
@@ -305,6 +311,7 @@
           baseURL:'/',
           paths:{
             'ui:'     :'module/ui/',
+            'date:'   :'module/date/',
           },
           meta:{
             '*':{
