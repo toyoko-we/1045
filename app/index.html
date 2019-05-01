@@ -93,6 +93,7 @@
      <div id='application'
           v-show='isReady == true'>
 
+       <!-- application-menu -->
        <div class='ui main menu pointing icon fixed sticky top'>
          <a class='item' data-tab='task'><i class='icon hotel'></i></a>
          <a class='item' data-tab='list'><i class='icon list'></i></a>
@@ -101,6 +102,7 @@
          <a class='item' data-tab='info'><i class='icon info'></i></a>
       </div>
 
+       <!-- application-content -->
        <div class='ui main grid padded'>
          <div class='row'>
            <div class='column'>
@@ -109,48 +111,37 @@
 
               <div class='ui stackable cards'>
                 <div class='ui card'>
-
-                    <div class="ui top attached label">1045 - TASK COUNTER</div>
-                    <data-table
-                      :rows='src'
-                      :keys='srcFilters'
-                      :row-class='row'
-                      :cell-class='cell'>
-                   </data-table>
-
-                   
-
+                  <div class='ui top attached label'>TOTAL</div>
+                  <total :rows='src' :keys="['bed','bath','check']"></total>
                </div>
-               
- 
-             </div>
-
-             <div class='ui stackable cards'>
-
                 <div class='ui card'>
-                    <!-- VIEW -->
-                    <div id='counter' :class="['ui','five','item','icon','menu','large','component']">
-                        <div class='item browse'>
-                          <i class='icon name'></i>
-                       </div>
-                        <div class='ui fluid popup top left' id='user-controller'>
-                          <!-- dat.gui -->
-                       </div>
-                       　<div class='item'>
-                           <i class='icon list'></i>
-                       </div>
-                        <numeric-up-down name='bed'   action='decrease' :min='0' :max='619' v-model='userData.bed'   @input='synchronize'></numeric-up-down>
-                        <numeric-up-down name='bath'  action='decrease' :min='0' :max='619' v-model='userData.bath'  @input='synchronize'></numeric-up-down>
-                        <numeric-up-down name='check' action='decrease' :min='0' :max='619' v-model='userData.check' @input='synchronize'></numeric-up-down>
-                     </div>
-        
-                       </div>
-
+                  <div class='ui top attached label'>TASK TABLE</div>
+                  <data-table
+                    :rows='src'
+                    :keys='srcFilters'
+                    :row-class='row'
+                    :cell-class='cell'>
+                 </data-table>
+               </div>
+             </div>
+              <div class='ui stackable cards'>
+                <div class='ui card'>
+                  <div id='counter' :class="['ui','five','item','icon','menu','large','component']">
+                    <div class='item browse'>
+                      <i class='icon name'></i>
+                   </div>
+                    <div class='ui fluid popup top left' id='user-controller'>
+                   </div>
+                    <div class='item'>
+                      <i class='icon list'></i>
+                   </div>
+                    <numeric-up-down name='bed'   action='increase' :min='0' :max='619' v-model='userData.bed'   @input='synchronize'></numeric-up-down>
+                    <numeric-up-down name='bath'  action='increase' :min='0' :max='619' v-model='userData.bath'  @input='synchronize'></numeric-up-down>
+                    <numeric-up-down name='check' action='increase' :min='0' :max='619' v-model='userData.check' @input='synchronize'></numeric-up-down>
+                 </div>
+               </div>
              </div>
   
- 
-
-
            </div>
             <div class='ui tab' data-tab='list'>B
            </div>

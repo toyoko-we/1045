@@ -4,17 +4,6 @@ main{
   height:100%;
 }
 
-#boot{
-  padding:.875em;
-}
-#boot .ui.cards~.ui.card {
-  margin-top: 0;
-}
-#boot .ui.stackable.cards{
-  height:100%;
-}
-
-
 .ui.grid,
 .ui.grid .row,
 .ui.grid .row .column{
@@ -35,6 +24,17 @@ main{
       -ms-flex-direction:column;
           flex-direction:column;
 }
+
+#boot{
+  padding:.875em;
+}
+#boot .ui.cards~.ui.card {
+  margin-top: 0;
+}
+#boot .ui.stackable.cards{
+  height:100%;
+}
+
 
 .name    {color:#00b5ad;}
 .floor   {color:#000000;}

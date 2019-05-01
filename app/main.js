@@ -13,6 +13,7 @@ window.addEventListener('load',function(){
       'url:bootstrap/introduce.vue',
       'url:component/form/data-table.vue',
       'url:component/form/numeric-up-down.vue',
+      'url:component/util/total.vue',
     ],
     data:{
       url:null,
