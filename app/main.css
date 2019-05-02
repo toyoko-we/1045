@@ -42,7 +42,9 @@ main{
 .bath    {color:#2185d0;}
 .check   {color:#21ba45;}
 
-
+#application{
+  height:100%;
+}
 
 
 

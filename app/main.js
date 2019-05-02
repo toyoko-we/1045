@@ -66,10 +66,11 @@ window.addEventListener('load',function(){
         })
       },
       synchronize:function(){
-        this.user.put(this.userData)
-        this.userList.set(this.user)
+        console.log(this.user)
+        //this.user.put(this.userData)
+        //this.userList.set(this.user)
 
-        localStorage.setItem('userData',JSON.stringify(this.userData))
+        //localStorage.setItem('userData',JSON.stringify(this.userData))
       },
 
       boot:function(fingerprint,json){
