@@ -108,7 +108,7 @@
         yAxis
       var
         yName
-      var maxTaskCount = 62
+      var maxTaskCount = 70
       
       function axisInit()
       {
@@ -146,9 +146,10 @@
             .attr('transform','translate(0,' + height + ')')
             .call(d3.axisBottom(xAxis).tickSize(-height))
         chart.append('g')
-             .call(d3.axisLeft(yName).tickSize(-width).tickFormat(function(id){
-               return gunDB.archive[id][0].name
-             }))
+            .attr('class','grid')
+            .call(d3.axisLeft(yName).tickSize(-width).tickFormat(function(id){
+              return gunDB.archive[id][0].name
+            }))
       }
 
       draw()
@@ -187,8 +188,6 @@
             .datum(function(d){
               return(d.density)})
             .attr('class',task)
-            .attr('stroke','black')
-            .attr('stroke-width',0.3)
             .attr('d',  d3.line()
               .curve(d3.curveBasis)
               .x(function(d) {
@@ -226,6 +225,8 @@ svg rect.inner{
 
 path{
   opacity:0.726;
+  stroke:'black';
+  stroke-width:0.3;
 }
 path.bed{
   fill:#fbbd08;
@@ -241,6 +242,7 @@ text{
 }
 .grid line {
   stroke: lightgrey;
+  stroke-width:1;
   stroke-opacity: 0.7;
   shape-rendering: crispEdges;
 }
