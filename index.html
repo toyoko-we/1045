@@ -3,102 +3,241 @@
   <head>
    <meta charset='utf-8'>
    <meta content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
-   <script src='fetch/3.0.0.min.js'></script>
-   <script src='core/2.6.5.min.js'></script>
+   <script src='lodash/4.17.12.min.js'></script>
    <script src='d3/5.9.2.min.js'></script>
    <script>
-     document.addEventListener('DOMContentLoaded',function(){
-      
-      // set the dimensions and margins of the graph
-      var margin = {top: 60, right: 30, bottom: 20, left:110},
-          width = window.innerWidth - margin.left - margin.right,
-          height = 400 - margin.top - margin.bottom;
-      
-      // append the svg object to the body of the page
-      var svg = d3.select("#my_dataviz")
-        .append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-          .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
-      
-      //read data
-      d3.csv("https://raw.githubusercontent.com/zonination/perceptions/master/probly.csv").then(function(data) {
+     window.addEventListener('load',function(){
 
-        // Get the different categories and count them
-        var categories = data.columns
-        var n = categories.length
-      
-        // Add X axis
-        var x = d3.scaleLinear()
-          .domain([-10, 140])
-          .range([ 0, width ]);
-        svg.append("g")
-          .attr("transform", "translate(0," + height + ")")
-          .call(d3.axisBottom(x));
-      
-        // Create a Y scale for densities
-        var y = d3.scaleLinear()
-          .domain([0, 0.4])
-          .range([ height, 0]);
-      
-        // Create the Y axis for names
-        var yName = d3.scaleBand()
-          .domain(categories)
-          .range([0, height])
-          .paddingInner(1)
-        svg.append("g")
-          .call(d3.axisLeft(yName));
-      
-        // Compute kernel density estimation for each column:
-        var kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40)) // increase this 40 for more accurate density.
-        var allDensity = []
-        for (i = 0; i < n; i++) {
-            key = categories[i]
-            density = kde( data.map(function(d){  return d[key]; }) )
-            allDensity.push({key: key, density: density})
+      var gunDB = {
+        archive:{
+          'GA1.1.1991240896.1555964592':[
+            {name:'佐野',bed:50,bath:7,check:0},
+            {name:'佐野',bed:50,bath:8,check:0},
+            {name:'佐野',bed:50,bath:4,check:0},
+            {name:'佐野',bed:10,bath:3,check:0},
+            {name:'佐野',bed:20,bath:2,check:0},
+          ],
+
+          'GA1.1.1991240896.1555964593':[
+            {name:'吉野',bed:25,bath:0,check:1},
+            {name:'吉野',bed:25,bath:0,check:2},
+            {name:'吉野',bed:25,bath:0,check:8},
+            {name:'吉野',bed:25,bath:0,check:3},
+            {name:'吉野',bed:25,bath:0,check:4},
+          ],
+
+          'GA1.1.1991240896.1555964594':[
+            {name:'野野',bed:30,bath:12,check:0},
+            {name:'野野',bed:28,bath:32,check:0},
+            {name:'野野',bed:42,bath:22,check:0},
+            {name:'野野',bed:30,bath:12,check:0},
+            {name:'野野',bed:28,bath:9,check:0},
+          ],
         }
+      }
+
+      function gunDBprint(key){
+        console.log(_.map(gunDB.archive[key],'bed'))
+        console.log(_.map(gunDB.archive[key],'bath'))
+        console.log(_.map(gunDB.archive[key],'check'))
+      }
+
+      var margin ={
+        top:10,
+        left:10,
+        right:10,
+        bottom:10,
+      }
+
+      var padding ={
+        top:70,
+        left:40,
+        right:10,
+        bottom:30,
+      }
+
+      console.dir(document.body)
+      console.dir(document.body.clientWidth)
+      console.dir(document.body.clientHeight)
+
+      var
+        outerWidth  = document.body.clientWidth,
+        outerHeight = _.keys(gunDB.archive).length * 120,
+        innerWidth  = outerWidth  - (margin.left + margin.right),
+        innerHeight = outerHeight - (margin.top + margin.bottom),
+        width       = innerWidth  - (padding.left + padding.right),
+        height      = innerHeight - (padding.top + padding.bottom);
+
+      gunDBprint('GA1.1.1991240896.1555964592')
+
+      var
+        svg,
+        area,
+        chart
+
+      function init()
+      {
+        svg = d3.select('#view')
+                .attr('width', outerWidth)
+                .attr('height',outerHeight)
+        area = svg.append('g')
+                .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
+        chart = area.append("g")
+                .attr('transform','translate(' + padding.left + ',' + padding.top + ')')
+      }
+
+      init()
+
+      var
+        users,
+        usersCount
+
+      function construct()
+      {
+        users = _.keys(gunDB.archive)
+        usersCount = users.length
+      }
+
+      construct()
+
+      var
+        xAxis,
+        yAxis
+      var
+        yName
+      var maxTaskCount = 62
       
-        // Add areas
-        svg.selectAll("areas")
-          .data(allDensity)
-          .enter()
-          .append("path")
-            .attr("transform", function(d){return("translate(0," + (yName(d.key)-height) +")" )})
-            .datum(function(d){return(d.density)})
-            .attr("fill", "#69b3a2")
-            .attr("stroke", "#000")
-            .attr("stroke-width", 1)
-            .attr("d",  d3.line()
-                .curve(d3.curveBasis)
-                .x(function(d) { return x(d[0]); })
-                .y(function(d) { return y(d[1]); })
-            )
-      
-      })
-      
-      // This is what I need to compute kernel density estimation
+      function axisInit()
+      {
+        xAxis = d3.scaleLinear()
+                  .domain([-10, maxTaskCount])
+                  .range([ 0, width ]);      
+        yAxis = d3.scaleLinear()
+                  .domain([0,1.0])
+                  .range([height,0])          
+      }
+
+      function nameInit()
+      {
+        yName = d3.scaleBand()
+                  .domain(users)
+                  .range([0, height])
+                  .paddingInner(1)
+      }
+
+      axisInit()
+      nameInit()
+
+      function draw()
+      {
+        area.append('rect')
+            .attr('class','outer')
+            .attr('width', innerWidth)
+            .attr('height',innerHeight)
+        chart.append('rect')
+            .attr('class','inner')
+            .attr('width',  width)
+            .attr('height', height)
+        chart.append("g")
+            .attr('transform', 'translate(0,' + height + ')')
+            .call(d3.axisBottom(xAxis))
+        chart.append('g')
+             .call(d3.axisLeft(yName).tickFormat(function(id){
+               return gunDB.archive[id][0].name
+             }))
+      }
+
+      draw()
+
       function kernelDensityEstimator(kernel, X) {
         return function(V) {
           return X.map(function(x) {
             return [x, d3.mean(V, function(v) { return kernel(x - v); })];
-          });
-        };
+          })
+        }
       }
       function kernelEpanechnikov(k) {
         return function(v) {
           return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
-        };
+        }
       }
 
+      function insert(task)
+      {
+        var kde = kernelDensityEstimator(kernelEpanechnikov(3), xAxis.ticks(40))
+        var allDensity = []
+        for (i = 0; i < usersCount; i++) {
+            key = users[i]
+            values = _.map(gunDB.archive[key],task)
+            density = kde( values )
+            allDensity.push({key: key, density: density})
+        }
+      
+        // Add areas
+        chart.selectAll('areas')
+          .data(allDensity)
+          .enter()
+          .append('path')
+            .attr('transform', function(d){
+              return('translate(0,' + (yName(d.key)-height) +')' )})
+            .datum(function(d){
+              return(d.density)})
+            .attr('class',task)
+            .attr('stroke','black')
+            .attr('stroke-width',0.3)
+            .attr('d',  d3.line()
+              .curve(d3.curveBasis)
+              .x(function(d) {
+                return xAxis(d[0]); })
+              .y(function(d) {
+                return yAxis(d[1]); })
+            )
+      }
 
+      insert('bed')
+      insert('bath')
+      insert('check')
 
      })
       
       </script>
+       <style>
+html,
+body,#view{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+svg rect.outer{
+  fill:none;
+  stroke:black;
+}
+svg rect.inner{
+  fill:none;
+  stroke:black;
+  stroke-dasharray:3,4;
+}
+
+path{
+  opacity:0.726;
+}
+path.bed{
+  fill:#fbbd08;
+}
+path.bath{
+  fill:#2185d0;
+}
+path.check{
+  fill:#21ba45;
+}
+text{
+  font-size:12px;
+}
+      </style>
  </head>
   <body>
-   <div id="my_dataviz"></div>
+   <svg id="view"></svg>
  </body>
 </html>
