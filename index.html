@@ -4,36 +4,36 @@
    <meta charset='utf-8'>
    <meta content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
    <script src='lodash/4.17.12.min.js'></script>
+   <script src='faker/4.1.0.min.js'></script>
    <script src='d3/5.9.2.min.js'></script>
    <script>
      window.addEventListener('load',function(){
 
       var gunDB = {
         archive:{
-          'GA1.1.1991240896.1555964592':[
-            {name:'佐野',bed:50,bath:7,check:0},
-            {name:'佐野',bed:50,bath:8,check:0},
-            {name:'佐野',bed:50,bath:4,check:0},
-            {name:'佐野',bed:10,bath:3,check:0},
-            {name:'佐野',bed:20,bath:2,check:0},
-          ],
-
-          'GA1.1.1991240896.1555964593':[
-            {name:'吉野',bed:25,bath:0,check:1},
-            {name:'吉野',bed:25,bath:0,check:2},
-            {name:'吉野',bed:25,bath:0,check:8},
-            {name:'吉野',bed:25,bath:0,check:3},
-            {name:'吉野',bed:25,bath:0,check:4},
-          ],
-
-          'GA1.1.1991240896.1555964594':[
-            {name:'野野',bed:30,bath:12,check:0},
-            {name:'野野',bed:28,bath:32,check:0},
-            {name:'野野',bed:42,bath:22,check:0},
-            {name:'野野',bed:30,bath:12,check:0},
-            {name:'野野',bed:28,bath:9,check:0},
-          ],
         }
+      }
+
+      function gunDBcreate(num){
+
+        for(var i=0;i<num;i++)
+        {
+          var uuid = faker.random.uuid()
+          var firstName = faker.name.firstName()
+
+          gunDB.archive[uuid] = []
+
+          var range = faker.random.number({ max:365, min:1 })
+          for(var n=0;n<range;n++){
+            gunDB.archive[uuid].push({
+                name:firstName,
+                bed:faker.random.number({ max:50, min:0 }),
+                bath:faker.random.number({ max:32, min:0 }),
+                check:faker.random.number({ max:24, min:12 }),
+              })
+            }
+          }
+
       }
 
       function gunDBprint(key){
@@ -50,8 +50,8 @@
       }
 
       var padding ={
-        top:70,
-        left:40,
+        top:30,
+        left:70,
         right:10,
         bottom:30,
       }
@@ -60,15 +60,18 @@
       console.dir(document.body.clientWidth)
       console.dir(document.body.clientHeight)
 
+      gunDBcreate(140)
+      gunDB//print('GA1.1.1991240896.1555964592')
+
+
       var
         outerWidth  = document.body.clientWidth,
-        outerHeight = _.keys(gunDB.archive).length * 120,
+        outerHeight = _.keys(gunDB.archive).length * 30,
         innerWidth  = outerWidth  - (margin.left + margin.right),
         innerHeight = outerHeight - (margin.top + margin.bottom),
         width       = innerWidth  - (padding.left + padding.right),
         height      = innerHeight - (padding.top + padding.bottom);
 
-      gunDBprint('GA1.1.1991240896.1555964592')
 
       var
         svg,
@@ -130,19 +133,20 @@
 
       function draw()
       {
-        area.append('rect')
-            .attr('class','outer')
-            .attr('width', innerWidth)
-            .attr('height',innerHeight)
-        chart.append('rect')
-            .attr('class','inner')
-            .attr('width',  width)
-            .attr('height', height)
+        // area.append('rect')
+        //     .attr('class','outer')
+        //     .attr('width', innerWidth)
+        //     .attr('height',innerHeight)
+        // chart.append('rect')
+        //     .attr('class','inner')
+        //     .attr('width',  width)
+        //     .attr('height', height)
         chart.append("g")
-            .attr('transform', 'translate(0,' + height + ')')
-            .call(d3.axisBottom(xAxis))
+            .attr('class','grid')
+            .attr('transform','translate(0,' + height + ')')
+            .call(d3.axisBottom(xAxis).tickSize(-height))
         chart.append('g')
-             .call(d3.axisLeft(yName).tickFormat(function(id){
+             .call(d3.axisLeft(yName).tickSize(-width).tickFormat(function(id){
                return gunDB.archive[id][0].name
              }))
       }
@@ -158,13 +162,13 @@
       }
       function kernelEpanechnikov(k) {
         return function(v) {
-          return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
+          return Math.abs(v /= k) <= 1 ? 30 / _.keys(gunDB.archive).length * 0.25 * (1 - v * v) / k : 0;
         }
       }
 
       function insert(task)
       {
-        var kde = kernelDensityEstimator(kernelEpanechnikov(3), xAxis.ticks(40))
+        var kde = kernelDensityEstimator(kernelEpanechnikov(7), xAxis.ticks(40))
         var allDensity = []
         for (i = 0; i < usersCount; i++) {
             key = users[i]
@@ -203,7 +207,7 @@
       </script>
        <style>
 html,
-body,#view{
+body{
   margin:0;
   padding:0;
   width:100%;
@@ -235,6 +239,12 @@ path.check{
 text{
   font-size:12px;
 }
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
       </style>
  </head>
   <body>
