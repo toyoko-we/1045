@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>URL</key>
-	<string>https://github.com/GoogleChromeLabs/pwacompat</string>
+	<string>https://github.com/lifaon74/url-polyfill</string>
 </dict>
 </plist>
