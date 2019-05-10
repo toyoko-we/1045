@@ -23,34 +23,54 @@
   <script src='pwa/url/1.1.5.min.js'></script>
   <script src='pwa/2.0.8.min.js'></script>
 
+  <script src='vue/2.6.10.min.js'></script>
+  <script src='vue/plugin/loader/1.4.0.js'></script>
+
   <script src='ui/jquery/3.4.1.min.js'></script>
   <script src='ui/2.4.2.min.js'></script>
+
+  <script>
+    Vue.use(httpVueLoader)
+    document.addEventListener('DOMContentLoaded',function(){
+
+      new Vue({
+        el:'main',
+        components:[
+          'url:vue/component/form/numeric-up-down.vue'
+        ],
+        data:{
+          i1:100,
+          i2:100,
+        },
+        methods:{
+          changed:function(value){
+            console.log(value)
+          }
+        },
+      })
+    })
+ </script>
   <style>
     @import url('ui/2.4.2.min.css');
-
-    .grid .column:not(.row):not(.grid):after {
-      background-color: rgba(86, 61, 124, .1);
-      -webkit-box-shadow: 0px 0px 0px 1px rgba(86, 61, 124, 0.2) inset;
-      box-shadow: 0px 0px 0px 1px rgba(86, 61, 124, 0.2) inset;
-      content: "";
-      display: block;
-      min-height: 50px;
+    html,
+    body,
+    main{
+      height:100%;
     }
-
+    .ui.container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
  </style>
 
  </head>
   <body>
-   <div class='ui four column grid'>
-     <div class='row'>
-       <div class='column'></div>
-       <div class='column'></div>
-       <div class='column'></div>
+   <main class='ui container'>
+     <div class='ui menu two item'>
+       <numeric-up-down name='plus'  action='increase' :min='0' :max='619' v-model='i1' @input='changed'></numeric-up-down>
+       <numeric-up-down name='minus' action='decrease' :min='0' :max='619' v-model='i2' @input='changed'></numeric-up-down>
     </div>
-     <div class='column'></div>
-     <div class='column'></div>
-     <div class='column'></div>
-     <div class='column'></div>
-  </div>
+  </main>
  </body>
 </html>
