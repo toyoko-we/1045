@@ -1,0 +1,358 @@
+<!doctype html>
+ <html>
+  <head>
+   <meta charset='utf-8'>
+   <title>週報として一週間分の生産性をサンレディースに送信、自身の立場と価値を証明する</title>
+   <style>
+     @import url('package/semantic-ui/2.4.2.min.css');
+
+     .ui.table{
+       border:none;
+     }
+
+     .ui.table thead th,
+     .ui.table tbody td{
+       padding:0;
+     }
+
+     i.icon.hotel:before {content:'\f594';}
+i.icon.回収:before {content:'\f52b';}
+i.icon.寝室:before {content:'\f236';}
+i.icon.浴室:before {content:'\f2cd';}
+i.icon.仕上:before {content:'\f756';}
+i.icon.台車:before {content:'\f472';}
+i.icon.toggle-on:before {content:'\f205';}
+i.icon.toggle-off:before {content:'\f204';}
+
+.回収 {color:#f2711c;}
+.寝室 {color:#b5cc18;}
+.浴室 {color:#2185d0;}
+.仕上 {color:#21ba45;}
+.台車 {color:#6435c9;}
+
+   .plan {
+     overflow:hidden;
+   }
+  .plan .ui.table input{
+    width:100%;
+    border:none;
+    text-align:center;
+  }
+  .plan .ui.table input:focus{
+    outline:none;
+  }
+  .plan .ui.table .pretty{
+    margin-right:0;
+  }
+  .plan input[capture]{
+    display:none;
+  }
+  .plan .pinch-zoom-container{
+    height: 159px !important;
+  }
+  
+  .plan .ui.table{
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+    border:none;
+  }
+  .task .item.numeric-up-down input.label{
+    background:transparent;
+    color:black;
+  }
+  .task .menu{
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+    border:none;
+  }
+  .task .ui.table thead th,
+  .task .ui.table tbody td{
+    padding:0;
+  }
+  .task .ui.table input{
+    width:100%;
+    border:none;
+    text-align:center;
+  }
+  .task .ui.table input:focus{
+    outline:none;
+  }
+  .task .ui.table .pretty{
+    margin-right:0;
+  }
+  .task input[capture]{
+    display:none;
+  }
+  .task .ui.table i.icon{
+    margin:0;
+  }
+  .task .pretty.p-icon .state .icon{
+    opacity:1;
+  }
+
+  .task input{
+    background:transparent;
+  }
+  .task input{
+    font-family:'Icons';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  </style>
+ </head>
+  <body>
+    <div class='ui grid padded'>
+      <div class='one column row'>
+        <div class='column'>
+          <!-- PCのときは横に表示 -->
+          <!-- サンレディース側はユーザのログイン情報を一覧管理して、全データを同時に取得し全体の生産性を一度に可視化する仕様 -->
+          <!-- 一番上にグラフとか（直近５日分の）-->
+            <article class='ui stackable cards'>
+
+
+                <div class='ui card plan'>
+                  <header>
+                      <div class="ui top attached label">9F</div>
+                  </header>
+
+  
+                    <table class="ui attached table unstackable center aligned celled fixed">
+                      <thead>
+                        <tr>
+                          <th>総括</th>
+                          <th colspan="3"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="text"></td>
+                          <td colspan='3'></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table class="ui attached table unstackable center aligned celled fixed">
+                      <thead>
+                        <tr>
+                          <th>就業日</th>
+                          <th>リーダ</th>
+                          <th>担当階</th>
+                          <th>名前</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="tel"></td>
+                          <td><input type="text"></td>
+                          <td><input type="text"></td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+  
+  
+  
+  
+  
+                    <table class='ui table fixed unstackable center aligned icon celled'>
+                        <thead>
+                          <tr>
+                            <th>05/11</th>
+                            <th><i class='icon 回収'></th>
+                            <th><i class='icon 寝室'></th>
+                            <th><i class='icon 浴室'></th>
+                            <th><i class='icon 仕上'></th>
+                            <th><i class='icon 台車'></th>
+                         </tr>
+                       </thead>
+                          <tr>
+                              <td>合計数</td><td></td><td>4</td><td>1</td><td></td>
+    
+    
+                         </tr>
+                         <tr>
+                            <td>10:12</td><td colspan='5'>作業開始</td>
+                         </tr>
+                          <tr>
+                            <td>11:30</td><td></td><td style='background:#b5cc18;'>S</td><td></td><td></td><td></td>
+                         </tr>
+                                       <tr>
+                            <td>11:36</td><td></td><td style='background:#b5cc18;'>T</td><td></td><td></td><td></td>
+                         </tr>
+                                       <tr>
+                            <td>11:40</td><td></td><td style='background:#b5cc18;'>S</td><td></td><td></td><td></td>
+                         </tr>
+                                       <tr>
+                            <td>11:44</td><td></td><td></td><td style='background:#2185d0;'>T</td><td></td><td></td>
+                         </tr>
+                          <tr class='positive'>
+                            <td>45</td>
+                            <td colspan='5'>休憩中</td>
+                         </tr>
+                                       <tr class='positive'>
+                                         <td>2F</td>
+                            <td colspan='5'>階変更リーダ塚本</td>
+                         </tr>
+                           <tr>
+                            <td>12:00</td><td></td><td><i class='icon check'></i></td><td></td><td></td><td></td>
+                         </tr>
+                         <tr class='positive'>
+                           <td>17:00</td> <td colspan='5'>完了</td>
+                         </tr>
+                     </table>
+  
+  
+                  </div>
+                </article>
+          <article class='ui stackable cards'>
+
+
+              <div class='ui card plan'>
+                  <header>
+                      <div class='pointing below no ui label compact' @click='toggle' data-micron='bounce'>9F
+                     </div>
+                      <label class='ui label compact icon button'>
+                        <i class='icon save'></i>
+                     </label>
+                      <span class='ui detail'>{{detail}}</span>
+                   </header>
+
+                  <table class="ui attached table unstackable center aligned celled fixed">
+                    <thead>
+                      <tr>
+                        <th>総括</th>
+                        <th colspan="3">連絡事項</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="text"></td>
+                        <td colspan="3"><input type="text"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table class="ui attached table unstackable center aligned celled fixed">
+                    <thead>
+                      <tr>
+                        <th>お名前</th>
+                        <th>担当階</th>
+                        <th>リーダ</th>
+                        <th>１５時</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="tel"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
+
+
+                  <table class='ui table fixed unstackable center aligned icon celled'>
+                      <thead>
+                        <tr>
+                          <th>05/11</th>
+                          <th><i class='icon 回収'></th>
+                          <th><i class='icon 寝室'></th>
+                          <th><i class='icon 浴室'></th>
+                          <th><i class='icon 仕上'></th>
+                          <th><i class='icon 台車'></th>
+                       </tr>
+                     </thead>
+                        <tr>
+                            <td>合計数</td><td></td><td>4</td><td>1</td><td></td>
+  
+  
+                       </tr>
+                       <tr>
+                          <td>10:12</td><td colspan='5'>作業開始</td>
+                       </tr>
+                        <tr>
+                          <td>11:30</td><td></td><td style='background:#b5cc18;'>S</td><td></td><td></td><td></td>
+                       </tr>
+                                     <tr>
+                          <td>11:36</td><td></td><td style='background:#b5cc18;'>T</td><td></td><td></td><td></td>
+                       </tr>
+                                     <tr>
+                          <td>11:40</td><td></td><td style='background:#b5cc18;'>S</td><td></td><td></td><td></td>
+                       </tr>
+                                     <tr>
+                          <td>11:44</td><td></td><td></td><td style='background:#2185d0;'>T</td><td></td><td></td>
+                       </tr>
+                        <tr class='positive'>
+                          <td>45</td>
+                          <td colspan='5'>休憩中</td>
+                       </tr>
+                                     <tr class='positive'>
+                                       <td>2F</td>
+                          <td colspan='5'>階変更リーダ塚本</td>
+                       </tr>
+                         <tr>
+                          <td>12:00</td><td></td><td><i class='icon check'></i></td><td></td><td></td><td></td>
+                       </tr>
+                       <tr class='positive'>
+                         <td>17:00</td> <td colspan='5'>完了</td>
+                       </tr>
+                   </table>
+
+
+                </div>
+              </article>
+              <article class='ui stackable cards'>
+                <section class='ui card'>
+                  <!-- ラジオボタンに変更 GITHUB探す -->
+                  <div class="ui small basic icon buttons">
+                      <button class="ui button">S</button>
+                      <button class="ui button">T</button>
+                      <button class="ui button">W</button>
+
+                    </div>
+                  </section>
+              </article>
+
+
+                <article class='ui stackable cards'>
+
+            <section class='ui card task'>
+   
+                <div class="ui menu icon six item">
+                  <a class='item'><!-- 新しいカードを追加しますか？--><i class='icon plus'></i></a>
+                  <a class="item 回収 component numeric-up-down"><i class="icon 回収"></i>
+                    <input type="number" min="0" max="128" value='0' class="ui label floating 回収"></a>
+                  <a class="item 寝室 component numeric-up-down"><i class="icon 寝室"></i>
+                    <input type="number" min="0" max="128" value='4' class="ui label floating 寝室"></a>
+                  <a class="item 浴室 component numeric-up-down"><i class="icon 浴室"></i>
+                    <input type="number" min="0" max="128" value='1' class="ui label floating 浴室"></a>
+                  <a class="item 仕上 component numeric-up-down"><i class="icon 仕上"></i>
+                    <input type="number" min="0" max="128" value='0' class="ui label floating 仕上"></a>
+                  <a class="item 台車 component numeric-up-down"><i class="icon 台車"></i>
+                    <input type="number" min="0" max="128" value='0' class="ui label floating 台車"></a>
+               </div>
+                   
+ 
+       </section>
+       </article>
+
+
+
+
+
+       </div>
+     </div>
+   </div>
+
+
+
+ </body>
+</html>
